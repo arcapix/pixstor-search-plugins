@@ -1,11 +1,16 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** allblack.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+
+## About This Plugin
+
 This plugin loads each image being ingested into memory and validates whether all pixels are black (RGB value = 0).
 
 Use case: identify redundant scanner data
@@ -16,19 +21,32 @@ This plugin will flag such files, making them easy to identify.
 Outside of the Search UI, one could write a script that interfaces directly with the middleware to find and remove such files.
 
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+## Installing This Plugin
+
+1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+2. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+3. (Re)ingest content as required - existing data will not be automatically rescanned
 
 Note: this plugin requires numpy, which should already be installed along with PixStor Search.
 
-##Using This Plugin
+
+## Using This Plugin
+
 This plugin will only return image which are mathmatically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
 
 Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
 
 Users could extend this example plugin to remove the limitation of memory encapsulation via memory-mapped I/O provided by numpy or other such libraries.
 
-##License
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited
