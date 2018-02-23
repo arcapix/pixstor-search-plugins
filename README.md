@@ -1,7 +1,7 @@
 #PixStor Search Community Plugins
 
-[Pixit Media Logo](./pixit_media_logo.png)
-[PixStor Logo](./pixstor_logo.png)
+![Pixit Media Logo](pixit_media_logo.png "Pixit Media Logo")
+![PixStor Logo](pixstor_logo.png "PixStor Logo")
 
 PixStor Search
 
