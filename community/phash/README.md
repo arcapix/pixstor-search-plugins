@@ -1,22 +1,16 @@
 #PixStor Search Plugin
 
-**Name:** allblack.py
+**Name:** phash.py
 **Author(s):** Chris Oates
 **Version:** 1.0
 **Last Updated:** 2017/09/15
 
 ##About This Plugin
-This plugin loads each image being ingested into memory and validates whether all pixels are black (RGGB value = 0).
-
-Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
-
-Users could extend this example plugin to remove the limitation of memory encapsulation via memory-mapped I/O provided by numpy or other such libraries.
 
 ##Installing This Plugin
 1. Copy the plugin to your designated plugins/ directory.
 
 ##Using This Plugin
-Note that this plugin will only return image which are mathmatically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
 
 ##License
 This plugin is licensed under the MIT License
