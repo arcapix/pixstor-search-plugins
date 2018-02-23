@@ -10,7 +10,7 @@
 
 ## About This Plugin
 
-This plugin loads each image being ingested into memory and validates whether all pixels are black (RGGB value = 0).
+This plugin loads each image being ingested into memory and validates whether all pixels are black (RGB value = 0).
 
 Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
 
@@ -18,7 +18,15 @@ Users could extend this example plugin to remove the limitation of memory encaps
 
 ## Installing This Plugin
 
-1. Copy the plugin to your designated plugins/ directory.
+1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+2. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+3. (Re)ingest content as required - existing data will not be automatically rescanned
 
 ## Using This Plugin
 
