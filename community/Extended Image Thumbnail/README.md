@@ -45,6 +45,9 @@ and returns `True` or `False` depending on whether the plugin should generate a 
 Note: the plugin *should not* handle jpeg and dpx images as these are already handled by the builtin plugin.
 Handling jpeg and dpx will cause thumbnails and previews to be generated twice for those formats.
 
+The `super` call in the example will prevent the plugin from handling jpeg and dpx,
+plus any other formats the builtin plugin might support in the future.
+
 No other changes should be necessary.
 
 

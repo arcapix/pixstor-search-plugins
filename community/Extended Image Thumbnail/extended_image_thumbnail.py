@@ -8,9 +8,10 @@ class ExtendedImageThumbnail(ImageThumbnail):
     """
 
     def handles(self, ext=None, mimetype=None):
-        """Add any formats you want to support below.
+        """Add any formats you want to support below."""
+        if super(ExtendedImageThumbnail, self).handles(ext, mimetype):
+            # don't handle formats already handled by builtin plugin
+            return False
 
-        This SHOULDN'T include jpeg and dpx as these are already handled by default.
-        """
-        # e.g. to add support for png
+        # e.g. add support for png
         return ext == '.png' or mimetype == "image/png"
