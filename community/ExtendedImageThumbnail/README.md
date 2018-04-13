@@ -20,7 +20,7 @@ This plugin overrides the builtin plugin's `handles` method to add support for a
 Optional supported formats are those provided by the `ImageMagick` Libraries.
 [ImageMagick supports](https://www.imagemagick.org/script/formats.php#supported)
 
-Future iterations of the builtin `ImageThumbnail` plugin will support increased formats and as such you should ensure that any extension of additional formats does not conflict in future releases.
+Future iterations of the builtin `ImageThumbnail` plugin will support increased formats and as such you should ensure that any extension of an additional format does not conflict in future releases.
 
 
 ## Installing This Plugin
@@ -40,13 +40,13 @@ As this plugin extended a builtin plugin it has no additonal requirements.
 
 ## Using This Plugin
 
-This plugin extended a builtin plugin by telling it to handle additional image formats.
+This plugin extends a builtin plugin to support additional image formats.
 
 Add any image formats you want to support to the `handles` method - the `handles` method receives each file's extension and mimetype
-and returns `True` or `False` depending on whether the plugin should generate a thumbnail and preview for that file.
+and returns `True` or `False` depending on whether the plugin should generate a thumbnail and preview for the file.
 
 Note: the plugin *should not* handle JPEG and DPX images as these are already handled by the builtin plugin.
-Handling JPEG and DPX will cause thumbnails and previews to be generated twice for those formats causing unwanted resource utilisation.  Database entries will be over-written with the contents of the most recent processing.
+Handling JPEG and DPX will cause thumbnails and previews to be generated twice for those formats causing unwanted resource utilisation.  Database entries of prior processing results will be over-written with the data of the most recent processing event.
 
 The `super` call in the example will prevent the plugin from handling JPEG and DPX,
 plus any other formats the builtin plugin might support in the future.
