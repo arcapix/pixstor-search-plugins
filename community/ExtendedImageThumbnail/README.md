@@ -45,6 +45,8 @@ This plugin extends a builtin plugin to support additional image formats.
 Add any image formats you want to support to the `handles` method - the `handles` method receives each file's extension and mimetype
 and returns `True` or `False` depending on whether the plugin should generate a thumbnail and preview for the file.
 
+Consideration should be given to the type image format handled.  Images with multiple layers or mip-mapped formats (E.G. PSD, EXR, Pixar TEX) are likley to cause a large memory overhead or unexpected results.  The onus is on the plugin writer to handle such formats efficiently.  It is advised to ensure successful conversion and understanding of the resource requirements of such formats outside of PixStor Search prior to implmentation.
+
 Note: the plugin *should not* handle JPEG and DPX images as these are already handled by the builtin plugin.
 Handling JPEG and DPX will cause thumbnails and previews to be generated twice for those formats causing unwanted resource utilisation.  Database entries of prior processing results will be over-written with the data of the most recent processing event.
 
