@@ -1,6 +1,6 @@
 # PixStor Search Plugin
 
-**Name:** extended_image_thumbnail.py
+**Name:** extendedimagethumbnail.py
 
 **Author(s):** Chris Oates
 
@@ -13,11 +13,14 @@
 
 This plugin generates thumbnail and preview images for additional image formats.
 
-By default, the builtin `ImageThumbnail` plugin only handles jpeg and dpx images.
-However, under the hood, the builtin plugin uses `ImageMagick`, so should be able to support any format that
+The builtin `ImageThumbnail` plugin handles JPEG and DPX images.
+
+This plugin overrides the builtin plugin's `handles` method to add support for additional formats.
+
+Optional supported formats are those provided by the `ImageMagick` Libraries.
 [ImageMagick supports](https://www.imagemagick.org/script/formats.php#supported)
 
-This plugin overrides the builtin plugin's `handles` method to tell it that it should support additional formats.
+Future iterations of the builtin `ImageThumbnail` plugin will support increased formats and as such you should ensure that any extension of additional formats does not conflict in future releases.
 
 
 ## Installing This Plugin
@@ -42,10 +45,10 @@ This plugin extended a builtin plugin by telling it to handle additional image f
 Add any image formats you want to support to the `handles` method - the `handles` method receives each file's extension and mimetype
 and returns `True` or `False` depending on whether the plugin should generate a thumbnail and preview for that file.
 
-Note: the plugin *should not* handle jpeg and dpx images as these are already handled by the builtin plugin.
-Handling jpeg and dpx will cause thumbnails and previews to be generated twice for those formats.
+Note: the plugin *should not* handle JPEG and DPX images as these are already handled by the builtin plugin.
+Handling JPEG and DPX will cause thumbnails and previews to be generated twice for those formats causing unwanted resource utilisation.  Database entries will be over-written with the contents of the most recent processing.
 
-The `super` call in the example will prevent the plugin from handling jpeg and dpx,
+The `super` call in the example will prevent the plugin from handling JPEG and DPX,
 plus any other formats the builtin plugin might support in the future.
 
 No other changes should be necessary.
