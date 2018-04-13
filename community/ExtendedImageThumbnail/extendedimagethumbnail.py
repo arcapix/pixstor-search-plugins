@@ -16,6 +16,6 @@ class ExtendedImageThumbnail(ImageThumbnail):
 
         """Add any additional image formats to support"""
         SUPPORTED_EXT =  ('.png', '.rgb')
-        SUPPORTED_MIME = ('image/png', 'image/rgb', , 'image/x-rgb')
+        SUPPORTED_MIME = ('image/png', 'image/rgb', 'image/x-rgb')
         
         return ext in SUPPORTED_EXT or mimetype in SUPPORTED_MIME
