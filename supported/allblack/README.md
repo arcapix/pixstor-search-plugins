@@ -38,7 +38,7 @@ Note: this plugin requires numpy, which should already be installed along with P
 
 ## Using This Plugin
 
-This plugin will only return image which are mathmatically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
+This plugin will only return image which are mathematically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
 
 Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
 
