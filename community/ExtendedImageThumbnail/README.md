@@ -35,7 +35,7 @@ systemctl restart apsearch-middleware
 
 3. (Re)ingest content as required - existing data will not be automatically rescanned
 
-As this plugin extended a builtin plugin it has no additonal requirements.
+As this plugin extended a builtin plugin it has no additional requirements.
 
 
 ## Using This Plugin
