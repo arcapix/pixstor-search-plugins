@@ -1,18 +1,68 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** text.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+The `TextPlugin` extracts various attributes of a text - word count, a list of 20 commonly used words, and the language of the text.
 
-##Using This Plugin
+Note - this plugin is very inefficient. It attempts to read a whole text into memory to perform its processing.
+For large files, it is likely to be very slow and memory inefficient.
 
-##License
+
+## Installing This Plugin
+
+1. Install dependencies
+
+At a minimum, you will need to install [langid](https://github.com/saffsd/langid.py)
+
+```
+pip install langid
+```
+
+Additionally, to use the `HTMLTextPlugin`, you will need [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup)
+
+```
+pip install bs4
+```
+
+for `PDFTextPlugin`, you will need textract
+
+```
+pip install textract
+```
+
+for `MSDocTextPlugin`, you will need [antiword](http://www.winfield.demon.nl/).
+Instructions for installing `antiword` on Cento 7 (used by PixStor 4) can be found [here](https://centos.pkgs.org/7/forensics-x86_64/antiword-0.37-9.el7.x86_64.rpm.html)
+
+
+2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+3. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+4. (Re)ingest content as required - existing data will not be automatically rescanned
+
+## Using This Plugin
+
+The TextPlugin handles only plaintext. But it can be subclassed to handle other text-based formats.
+The file includes three example subclasses - one which extracts text from MS Office Word documents,
+ one which extracts text from html documents, and one which extracts text from PDF documents.
+
+To create your own subclass, you need only provide the `_get_text` method, which extracts text from a file and returns it as a string.
+Text extraction for various file formats can be found in the python [textract](http://textract.readthedocs.io/en/latest/) package.
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited

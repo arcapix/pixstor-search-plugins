@@ -1,18 +1,70 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** colours.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+This plugin identifies the 10 most commonly appearing colours in an image.
 
-##Using This Plugin
+This is done using [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) to pick out the 10 most common colours in RGB.
+The RGB values are then translated in to the nearest colour name from the [web colours](https://en.wikipedia.org/wiki/Web_colors) set.
 
-##License
+Note - the plugin may return fewer than 10 colours if 10 unique colours can't be identified in the image
+
+## Installing This Plugin
+
+1. Install dependencies
+
+You will also need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.org/).
+
+If you're using a RedHat-based operating system, these can be installed using `yum`
+
+```
+yum install numpy scipy
+```
+
+Note - these are likely to be out of date. You can get the latest versions from `pip`
+
+```
+pip install numpy --upgrade
+pip install scipy --upgrade
+```
+
+**IMPORTANT** - you **must** install the yum packages **before** trying to install the pip packages.
+The yum packages will install dependencies, without which you are likely to see compilation errors from pip.
+
+You will also need the python webcolors package
+
+```
+pip install webcolors
+```
+
+2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+3. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+4. (Re)ingest content as required - existing data will not be automatically rescanned
+
+## Using This Plugin
+
+This plugin makes it possible to search for images by colour - for example, find images which are predominately red.
+
+Note - this plugin may be slow, especially for larger images. To make things a little faster, images are scaled-down prior to clustering. Some colours may be lost as a side-effect of this scaling-down.
+
+This plugin will attempt to handle all image file formats. In practice, it should be able to handle an image format that ImageMagick can handle.
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited

@@ -1,18 +1,43 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** colourfulness.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+This plugin calculates a metric of _colourfulness_ of an image.
 
-##Using This Plugin
+Coloufulness is measured on a scale of 0-6, where 0 is black-and-white, and 6 is most colourful.
 
-##License
+The calculation is based on an article from [pyimagesearch](http://www.pyimagesearch.com/2017/06/05/computing-image-colorfulness-with-opencv-and-python/)
+
+## Installing This Plugin
+
+1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+2. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+3. (Re)ingest content as required - existing data will not be automatically rescanned
+
+
+## Using This Plugin
+
+The colourfulness metric works well as a filter field - for example, search for images cityscapes, filter by colourfulness=0 (black and white)
+
+Alternatively, the plugin could be adapted to apply specific labels to images based on colourfulness, such as 'black and white', 'vibrant', etc.
+
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited
