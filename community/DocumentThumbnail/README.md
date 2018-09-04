@@ -13,6 +13,7 @@
 
 This plugin generates thumbnail and preview images for document file formats - including PDF and Word
 
+![Example PDF Thumbnail](example_pdf_thumbnail.png "Example PDF Thumbnail")
 
 ## Installing This Plugin
 

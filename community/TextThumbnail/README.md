@@ -14,6 +14,8 @@
 This plugin generates thumbnail and preview images for plain text files.
 The thumbnails display a section of the file's text.
 
+![Example Text Thumbnail](example_text_thumbnail.png "Example Text Thumbnail")
+
 
 ## Installing This Plugin
 

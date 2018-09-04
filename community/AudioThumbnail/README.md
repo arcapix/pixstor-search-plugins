@@ -15,6 +15,8 @@ This plugin generates thumbnail and preview images for audio file formats.
 
 The plugin takes a 5 second sample from the audio file and generates a spectrogram image from that sample.
 
+![Example Spectrogram](example_spectrogram.png "Example Spectrogram")
+
 
 ## Installing This Plugin
 
