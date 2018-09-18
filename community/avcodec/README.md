@@ -1,18 +1,39 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** avcodec.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+This plugin extracts information about the audio and video codecs used in video files.
 
-##Using This Plugin
+## Installing This Plugin
 
-##License
+1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+2. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+3. (Re)ingest content as required - existing data will not be automatically rescanned
+
+
+## Using This Plugin
+
+This plugin allows you to search for, e.g. 'h264' or 'aac'
+
+The plugin will attempt to handle all video formats. It could be easily adapted to work on audio files as well.
+
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited
