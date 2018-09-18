@@ -8,13 +8,18 @@
 
 **Last Updated:** 2017/09/15
 
+
 ## About This Plugin
 
 This plugin loads each image being ingested into memory and validates whether all pixels are black (RGB value = 0).
 
-Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
+Use case: identify redundant scanner data
 
-Users could extend this example plugin to remove the limitation of memory encapsulation via memory-mapped I/O provided by numpy or other such libraries.
+In the case where a scanner fails to generate an image, it will produce a completely black images file.
+This plugin will flag such files, making them easy to identify.
+
+Outside of the Search UI, one could write a script that interfaces directly with the middleware to find and remove such files.
+
 
 ## Installing This Plugin
 
@@ -28,9 +33,17 @@ systemctl restart apsearch-middleware
 
 3. (Re)ingest content as required - existing data will not be automatically rescanned
 
+Note: this plugin requires numpy, which should already be installed along with PixStor Search.
+
+
 ## Using This Plugin
 
-Note that this plugin will only return image which are mathmatically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
+This plugin will only return image which are mathematically comprised of entirely black pixels whereby the RGB value=0. Images which are perceptually black, but which contain one or more pixels which have an RGB value != 0 will not be returned.
+
+Care should be taken to not process extremely large images as the plugin loads the entire image into memory to perform the validation.
+
+Users could extend this example plugin to remove the limitation of memory encapsulation via memory-mapped I/O provided by numpy or other such libraries.
+
 
 ## License
 
