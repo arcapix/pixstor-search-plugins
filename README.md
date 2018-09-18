@@ -1,9 +1,13 @@
-#PixStor Search Community Plugins
+# PixStor Search Community Plugins
 
-![Pixit Media Logo](pixit_media_logo.png "Pixit Media Logo")
 ![PixStor Logo](pixstor_logo.png "PixStor Logo")
 
-PixStor Search
+## About
+PixStor Search provides searchable rich metadata of all files on a PixStor / IBM Spectrum Scale / GPFS file system.
 
+## PixStor Search API Documentation
+Full API documentation is provided at http://www.arcapix.com/searchapi
 
-[pixitmedia.com](http://www.pixitmedia.com/)
+___
+
+[![Pixit Media Logo](pixit_media_logo.png "Pixit Media Logo")](http://www.pixitmedia.com)
