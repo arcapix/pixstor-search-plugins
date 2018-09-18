@@ -1,18 +1,39 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** hash.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+This plugin calculates the md5 hash sum of every file on the filesystem.
 
-##Using This Plugin
+Note - this is likely to be very slow, especially for large files.
 
-##License
+## Installing This Plugin
+
+1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+2. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+3. (Re)ingest content as required - existing data will not be automatically rescanned
+
+## Using This Plugin
+
+This plugin could be used as the basis for finding duplicate files. Once you know the hash of a particular file, you can search for any other files which has the same hash. The search rules must have the exact same contents.
+
+This could be especially useful when used via search's REST interface - one could, for example, write a de-duping script which searches for and deletes files matching a particular hash.
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited
