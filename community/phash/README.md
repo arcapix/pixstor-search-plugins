@@ -25,6 +25,12 @@ It also has a certain tolerance for things like gamma levels, artefacts and nois
 pip install ImageHash
 ```
 
+**Note**: You may also need to update scipy. The older, rpm version is incompatible with ImageHash
+
+```
+pip install --upgrade scipy
+```
+
 2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
 
 3. Restart the `apsearch-middleware` service:
