@@ -11,7 +11,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import signal
 
-from arcapix.search.metadata.plugins.thumbnails import _Thumbnail
+from arcapix.search.metadata.plugins.arcapix_core.thumbnails import _Thumbnail
 
 logger = logging.getLogger(__name__)
 

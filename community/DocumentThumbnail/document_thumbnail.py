@@ -2,7 +2,7 @@ import logging
 from PIL import Image
 from anythumbnailer.thumbnail_ import thumbnailer_for, Unoconv
 
-from arcapix.search.metadata.plugins.thumbnails import _Thumbnail
+from arcapix.search.metadata.plugins.arcapix_core.thumbnails import _Thumbnail
 from arcapix.search.metadata.utils import image_to_thumbnail, get_mimetype
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ class DocumentThumbnail(_Thumbnail):
         return (mimetype and mimetype.startswith('application/') and
                 # files which can't be identified usually return mimetype application/octet-stream
                 # so we skip these, as they're likely to fail
-                 mimetype != 'application/octet-stream')
+                mimetype != 'application/octet-stream')
 
     def _make_proxy(self, source_path, thumbnail_size):
         mimetype = get_mimetype(source_path)
