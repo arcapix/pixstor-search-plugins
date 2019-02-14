@@ -4,9 +4,9 @@
 
 **Author(s):** Chris Oates
 
-**Version:** 1.0
+**Version:** 2.0
 
-**Last Updated:** 2018/07/25
+**Last Updated:** 2019/02/12
 
 
 ## About This Plugin

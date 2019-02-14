@@ -1,13 +1,16 @@
 import logging
 import imgkit
 
-from arcapix.search.metadata.plugins.thumbnails import _Thumbnail
+from arcapix.search.metadata.plugins.arcapix_core.thumbnails import _Thumbnail
 
 logger = logging.getLogger(__name__)
 
 
 class HtmlThumbnail(_Thumbnail):
     """Create a proxy of a specified HTML file."""
+
+    def namespace(self):
+        return "html"
 
     def handles(self, ext=None, mimetype=None):
         return (mimetype == 'text/html' or
