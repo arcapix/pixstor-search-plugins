@@ -17,21 +17,21 @@ logger = logging.getLogger(__name__)
 
 class VideoBarcodeProxy(ProxyPlugin):
     """Proxy to generate a 'barcode' visualisation of a video.
-    
+
     Inspired by:
-    
+
     http://www.pyimagesearch.com/2017/01/16/generating-movie-barcodes-with-opencv-and-python/
     """
-    
+
     def namespace(self):
         return 'video'
-    
+
     def handles(self, ext=None, mimetype=None):
         return mimetype and mimetype.startswith('video/')
-    
+
     def async(self):
         return True
-    
+
     def schema(self):
         return [{
             "name": "barcode",
@@ -40,11 +40,11 @@ class VideoBarcodeProxy(ProxyPlugin):
                 "datatype": "Proxy"
             }
         }]
-        
+
     def process_async(self, id_, source_path, thumbnail_size):
         """Make the proxy and add it to the proxy store/db"""
         proxy_filename = self.generate_temp_filename(suffix='.png')
-        
+
         generate_barcode(source_path, proxy_filename, thumbnail_size, max_frames=100, force_size=True)
 
         try:
@@ -52,7 +52,7 @@ class VideoBarcodeProxy(ProxyPlugin):
         finally:
             if os.path.exists(proxy_filename):
                 os.remove(proxy_filename)
-    
+
     def process(self, id_, file_, fileinfo=None):
         """Generate a downsized version of the video for previewing.
 
@@ -69,13 +69,13 @@ class VideoBarcodeProxy(ProxyPlugin):
 
 def get_target_frame_count(sb, target_width, max_frames=None, min_bar_width=1):
     """Calculate how many frames of the video should be extracted.
-    
+
     Also calculates the width for each bar in the bar code.
 
     Together the frame count and bar width determine the
     actual width of the generate barcode, which may differ
     from the specified target width.
-    
+
     :returns: frame count and bar width
     """
     frame_count = sb.video.duration * sb.video.frame_rate - 1
@@ -100,7 +100,7 @@ def get_target_frame_count(sb, target_width, max_frames=None, min_bar_width=1):
 
 def get_frames(source, size, max_frames=None, min_bar_width=1):
     """Get video frames to generate barcode from.
-    
+
     :param string source: path to source video
     :param tuple size: the desired output image size (width, height)
     :param int max_frames: limit the number of frames extracted.
@@ -129,12 +129,12 @@ def get_frames(source, size, max_frames=None, min_bar_width=1):
 
 def calculate_average_colors(frames):
     """Calculate average colour for each of a list of frames.
-    
+
     :param list frames: list of video frames
-    
+
     Each frame should be a PIL Image or numpy array
     where the 3rd axis is (R, G, B)
-    
+
     :returns: list of average colours for each frame
     """
     logger.info("Calculating averages...")
@@ -147,10 +147,10 @@ def calculate_average_colors(frames):
 
 def generate_barcode_from_colors(colors, bar_size):
     """Generate a barcode visualisation image from a list of colours.
-    
+
     :param list colors: list of colors in the form of (R, G, B)
     :param tuple bar_size: size of a single bar as (width, height)
-    
+
     :returns: generated barcode
     :rtype: PIL.Image
     """
