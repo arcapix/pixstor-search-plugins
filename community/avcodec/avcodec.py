@@ -4,7 +4,7 @@ from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import get_ffprobe_data
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.avcodec')
 
 
 class VideoCodecPlugin(Plugin):
@@ -17,22 +17,22 @@ class VideoCodecPlugin(Plugin):
 
     def schema(self):
         return [
-        {"codec": [
-            {
-            "name": "audio",
-            "prompt": "Audio codec name",
-            "value": {
-                "datatype": "String"
+            {"codec": [
+                {
+                    "name": "audio",
+                    "prompt": "Audio codec name",
+                    "value": {
+                        "datatype": "String"
+                    }
+                },
+                {
+                    "name": "video",
+                    "prompt": "Video codec name",
+                    "value": {
+                        "datatype": "String"
+                    }
                 }
-            },
-            {
-            "name": "video",
-            "prompt": "Video codec name",
-            "value": {
-                "datatype": "String"
-                }
-            }
-        ]}]
+            ]}]
 
     def _extract(self, filename):
         data = get_ffprobe_data(filename, ['-show_streams'])
@@ -62,6 +62,6 @@ class VideoCodecPlugin(Plugin):
             # posting to datastore failed
             return PluginStatus.ERRORED
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL

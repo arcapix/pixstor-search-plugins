@@ -1,5 +1,4 @@
-from arcapix.search.metadata.plugins.arcapix_core.thumbnails import VideoThumbnail
-from arcapix.search.metadata.plugins.arcapix_core.videopreview import VideoPreview
+from arcapix.search.metadata.plugins.arcapix_core.videopreview import VideoThumbnail, VideoPreview
 
 
 class ExtendedVideoThumbnail(VideoThumbnail):

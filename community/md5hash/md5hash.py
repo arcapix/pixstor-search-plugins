@@ -4,7 +4,7 @@ import logging
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.md5hash')
 
 
 class Md5HashPlugin(Plugin):
@@ -36,7 +36,7 @@ class Md5HashPlugin(Plugin):
 
             return PluginStatus.ERRORED
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
@@ -48,7 +48,7 @@ def md5sum(filename, blocksize=65536):
         with open(filename, "rb") as f:
             for block in iter(lambda: f.read(blocksize), b""):
                 hash.update(block)
-    except:
+    except Exception:
         logger.warn("Couldn't md5 hash %r", filename)
         # exclude any files that can't be read
         return None

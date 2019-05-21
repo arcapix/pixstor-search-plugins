@@ -6,15 +6,15 @@ from bs4 import BeautifulSoup
 from itertools import ifilter
 from PIL import Image, ImageDraw, ImageFont
 
-from arcapix.search.metadata.plugins.arcapix_core.thumbnails import _Thumbnail
+from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractThumbnailPlugin
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.text_thumbnail')
 
 # path to the font files
 FONTS_PATH = os.path.abspath(__file__ + '/../fonts/')
 
 
-class TextThumbnail(_Thumbnail):
+class TextThumbnail(AbstractThumbnailPlugin):
     """Create a proxy of a specified Text file."""
 
     def namespace(self):

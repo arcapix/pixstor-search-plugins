@@ -12,7 +12,7 @@ from arcapix.search.metadata.plugins.base import ProxyPlugin, PluginStatus
 
 from arcapix.config import config
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.videobarcode')
 
 
 class VideoBarcodeProxy(ProxyPlugin):
@@ -62,7 +62,7 @@ class VideoBarcodeProxy(ProxyPlugin):
             self._submit(self.process_async, args=[id_, file_, config['arcapix.search.proxies.preview.size']])
             return PluginStatus.INPROGRESS
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
@@ -216,7 +216,7 @@ if __name__ == '__main__':
         help=("Force the resulting image to match the specified size. "
               "Without this flag the resulting image may be slightly "
               "bigger or smaller than the size specified"
-    ))
+              ))
 
     args = parser.parse_args()
 

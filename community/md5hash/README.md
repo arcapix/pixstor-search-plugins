@@ -18,13 +18,23 @@ Note - this is likely to be very slow, especially for large files.
 
 ## Installing This Plugin
 
-1. Copy the plugin to your designated plugins directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins/available/user`
+1. Download the plugin to your 'available plugins' directory
 
-2. Create a symlink into the enabled plugins directory `/opt/arcapix/usr/share/apsearch/plugins/enabled`
+``` shell
+wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras \
+    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/community/md5hash/md5hash.py
+```
+
+2. Symlink the plugin to the 'enabled plugins' directory
+
+``` shell
+ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras/md5hash.py \
+    /opt/arcapix/usr/share/apsearch/plugins/enabled
+```
 
 3. Restart the `apsearch-middleware` service:
 
-```
+``` shell
 systemctl restart apsearch-middleware
 ```
 
