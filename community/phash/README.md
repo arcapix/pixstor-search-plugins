@@ -1,18 +1,53 @@
-#PixStor Search Plugin
+# PixStor Search Plugin
 
 **Name:** phash.py
+
 **Author(s):** Chris Oates
+
 **Version:** 1.0
+
 **Last Updated:** 2017/09/15
 
-##About This Plugin
+## About This Plugin
 
-##Installing This Plugin
-1. Copy the plugin to your designated plugins/ directory.
+This plugin calculates the 'perceptual hash' of image files.
 
-##Using This Plugin
+Unlike md5 hash, perceptual hash is based on the visual content of the image.
 
-##License
+Images with the same hash will include exact duplicates as well as resized versions of an image.
+It also has a certain tolerance for things like gamma levels, artefacts and noise.
+
+## Installing This Plugin
+
+1. Install dependencies
+
+```
+pip install ImageHash
+```
+
+**Note**: You may also need to update scipy. The older, rpm version is incompatible with ImageHash
+
+```
+pip install --upgrade scipy
+```
+
+2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+
+3. Restart the `apsearch-middleware` service:
+
+```
+systemctl restart apsearch-middleware
+```
+
+4. (Re)ingest content as required - existing data will not be automatically rescanned
+
+## Using This Plugin
+
+Similar to an md5 hash, perceptual hash can be used to search for duplicate images,
+with the additional benefit that it can identify resized versions of an image.
+
+## License
+
 This plugin is licensed under the MIT License
 
 Copyright 2018 Pixit Media Limited
