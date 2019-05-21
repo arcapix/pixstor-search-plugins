@@ -16,18 +16,18 @@ matchme = string.ascii_letters + string.digits
 
 class TextPlugin(Plugin):
     """Extract metadata from text type files.
-    
+
     Can be sub-classed for other text-based formats
     by overriding the ``_get_text`` method.
     """
-    
+
     def namespace(self):
         return 'text'
-    
+
     def handles(self, ext=None, mimetype=None):
         return (mimetype and mimetype.startswith('text/')
                 and mimetype != 'text/html')
-    
+
     def schema(self):
         return [
             {
@@ -50,57 +50,55 @@ class TextPlugin(Plugin):
             "value": {
                 "datatype": "[String]"
                 }
-                
             }
         ]
-        
+
     def _get_text(self, filename):
         with open(filename, 'r') as f:
             return f.read()
-    
+
     def _extract(self, filename):
         text = self._get_text(filename)
-        
+
         words = get_common_strings(text)
-        
+
         data = {'wordcount': sum(words.values()),
                 'common_words': [k for k, _ in words.most_common(20)]}
-        
+
         lang, _ = langid.classify(" ".join(k for k, _ in words.most_common(200)))
-        
+
         data['language'] = lang
-        
+
         return data
-        
 
     def process(self, id_, file_, fileinfo=None):
         try:
             data = self._extract(file_)
-            
+
             if Metadata(id_, self).update(data):
                 return PluginStatus.SUCCESS
-            
+
             return PluginStatus.ERRORED
-        
+
         except:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 
 class MSDocTextPlugin(TextPlugin):
-    
+
     def handles(self, ext=None, mimetype=None):
         return ext == '.doc' or mimetype == 'application/msdoc'
-    
+
     def _get_text(self, filename):
         return execute(["/usr/bin/antiword", filename])
-    
+
 
 class HTMLTextPlugin(TextPlugin):
-    
+
     def handles(self, ext=None, mimetype=None):
         return ext in ('.htm', '.html') or mimetype == 'text/html'
-    
+
     def _get_text(self, filename):
         with open(filename, 'r') as f:
             soup = BeautifulSoup(f.read(), 'html5lib')
@@ -108,10 +106,10 @@ class HTMLTextPlugin(TextPlugin):
 
 
 class PDFTextPlugin(TextPlugin):
-    
+
     def handles(self, ext=None, mimetype=None):
         return ext == '.pdf' or mimetype == 'application/pdf'
-    
+
     def _get_text(self, filename):
         return pdf_parser.Parser().extract(filename).decode('utf-8', 'replace')
 
