@@ -1,12 +1,12 @@
 import logging
 import imgkit
 
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractThumbnailPlugin
+from arcapix.search.metadata.plugins.base import ThumbnailPlugin
 
 logger = logging.getLogger('arcapix.search.metadata.plugins.ext.html_thumbnail')
 
 
-class HtmlThumbnail(AbstractThumbnailPlugin):
+class HtmlThumbnail(ThumbnailPlugin):
     """Create a proxy of a specified HTML file."""
 
     def namespace(self):

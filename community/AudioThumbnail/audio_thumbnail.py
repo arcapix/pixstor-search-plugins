@@ -11,12 +11,12 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy import signal
 
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractThumbnailPlugin
+from arcapix.search.metadata.plugins.base import ThumbnailPlugin
 
 logger = logging.getLogger('arcapix.search.metadata.plugins.ext.audio_thumbnail')
 
 
-class AudioThumbnail(AbstractThumbnailPlugin):
+class AudioThumbnail(ThumbnailPlugin):
     """General purpose thumbnail generator for audio files."""
 
     def namespace(self):

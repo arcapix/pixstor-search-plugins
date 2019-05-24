@@ -2,13 +2,13 @@ import logging
 from PIL import Image
 from anythumbnailer.thumbnail_ import thumbnailer_for, Unoconv
 
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractThumbnailPlugin
+from arcapix.search.metadata.plugins.base import ThumbnailPlugin
 from arcapix.search.metadata.utils import image_to_thumbnail, get_mimetype
 
 logger = logging.getLogger('arcapix.search.metadata.plugins.ext.document_thumbnail')
 
 
-class DocumentThumbnail(AbstractThumbnailPlugin):
+class DocumentThumbnail(ThumbnailPlugin):
     """Create a proxy for various document types.
 
     Uses anythumbnailer, which covers a lot
