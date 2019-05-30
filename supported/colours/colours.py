@@ -8,7 +8,7 @@ from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import load_image
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.colours')
 
 
 class ColoursPlugin(Plugin):
@@ -26,7 +26,7 @@ class ColoursPlugin(Plugin):
             "prompt": "Names of common colours extracted from the image",
             "value": {
                 "datatype": "[String]"  # list of strings
-                }
+            }
         }]
 
     def _extract(self, filename):
@@ -45,7 +45,7 @@ class ColoursPlugin(Plugin):
 
             return PluginStatus.ERRORED
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 

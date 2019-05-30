@@ -25,13 +25,13 @@ You will also need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.
 
 If you're using a RedHat-based operating system, these can be installed using `yum`
 
-```
+``` shell
 yum install numpy scipy
 ```
 
 Note - these are likely to be out of date. You can get the latest versions from `pip`
 
-```
+``` shell
 pip install numpy --upgrade
 pip install scipy --upgrade
 ```
@@ -41,15 +41,27 @@ The yum packages will install dependencies, without which you are likely to see 
 
 You will also need the python webcolors package
 
-```
+``` shell
 pip install webcolors
 ```
 
-2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+2. Download the plugin to your 'available plugins' directory
 
-3. Restart the `apsearch-middleware` service:
-
+``` shell
+wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-supported-extras \
+    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/supported/colours/colours.py
 ```
+
+3. Symlink the plugin to the 'enabled plugins' directory
+
+``` shell
+ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-supported-extras/colours.py \
+    /opt/arcapix/usr/share/apsearch/plugins/enabled
+```
+
+4. Restart the `apsearch-middleware` service:
+
+``` shell
 systemctl restart apsearch-middleware
 ```
 
@@ -67,7 +79,7 @@ This plugin will attempt to handle all image file formats. In practice, it shoul
 
 This plugin is licensed under the MIT License
 
-Copyright 2018 Pixit Media Limited
+Copyright 2019 Pixit Media Limited
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

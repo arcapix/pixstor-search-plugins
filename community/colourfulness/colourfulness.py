@@ -6,12 +6,12 @@ from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import load_image
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.colourfulness')
 
 BOUNDS = [0, 15, 33, 45, 59, 82, 109]
 
 
-class ColorfulnessPlugin(Plugin):
+class ColourfulnessPlugin(Plugin):
 
     def namespace(self):
         return 'image'
@@ -21,17 +21,17 @@ class ColorfulnessPlugin(Plugin):
 
     def schema(self):
         return [{
-            "name": "colorfulness",
+            "name": "colourfulness",
             "prompt": "Rating of how colourful the image is (0-6)",
             "value": {
                 "datatype": "Integer"
-                }
-            }]
+            }
+        }]
 
     def _extract(self, filename):
-        value = image_colorfulness(filename)
+        value = image_colourfulness(filename)
 
-        return {'colorfulness': bisect(BOUNDS, value) - 1}
+        return {'colourfulness': bisect(BOUNDS, value) - 1}
 
     def process(self, id_, file_, fileinfo=None):
         try:
@@ -42,13 +42,13 @@ class ColorfulnessPlugin(Plugin):
 
             return PluginStatus.ERRORED
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 
-def image_colorfulness(filename):
-    """Calculate a 'colorfulness' metric for an image.
+def image_colourfulness(filename):
+    """Calculate a 'colourfulness' metric for an image.
 
     Adapted from http://www.pyimagesearch.com/2017/06/05/computing-image-colorfulness-with-opencv-and-python/
     """

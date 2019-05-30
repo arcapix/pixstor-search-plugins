@@ -22,35 +22,47 @@ For large files, it is likely to be very slow and memory inefficient.
 
 At a minimum, you will need to install [langid](https://github.com/saffsd/langid.py)
 
-```
+``` shell
 pip install langid
 ```
 
 Additionally, to use the `HTMLTextPlugin`, you will need [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup)
 
-```
+``` shell
 pip install bs4
 ```
 
 for `PDFTextPlugin`, you will need textract
 
-```
+``` shell
 pip install textract
 ```
 
 for `MSDocTextPlugin`, you will need [antiword](http://www.winfield.demon.nl/).
-Instructions for installing `antiword` on Cento 7 (used by PixStor 4) can be found [here](https://centos.pkgs.org/7/forensics-x86_64/antiword-0.37-9.el7.x86_64.rpm.html)
+Instructions for installing `antiword` on Cento 7 (used by PixStor) can be found [here](https://centos.pkgs.org/7/forensics-x86_64/antiword-0.37-9.el7.x86_64.rpm.html)
 
 
-2. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+2. Download the plugin to your 'available plugins' directory
 
-3. Restart the `apsearch-middleware` service:
-
+``` shell
+wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras \
+    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/community/text/text.py
 ```
+
+3. Symlink the plugin to the 'enabled plugins' directory
+
+``` shell
+ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras/text.py \
+    /opt/arcapix/usr/share/apsearch/plugins/enabled
+```
+
+4. Restart the `apsearch-middleware` service:
+
+``` shell
 systemctl restart apsearch-middleware
 ```
 
-4. (Re)ingest content as required - existing data will not be automatically rescanned
+5. (Re)ingest content as required - existing data will not be automatically rescanned
 
 ## Using This Plugin
 
@@ -65,7 +77,7 @@ Text extraction for various file formats can be found in the python [textract](h
 
 This plugin is licensed under the MIT License
 
-Copyright 2018 Pixit Media Limited
+Copyright 2019 Pixit Media Limited
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -14,15 +14,27 @@ This plugin extracts information about the audio and video codecs used in video 
 
 ## Installing This Plugin
 
-1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+1. Download the plugin to your 'available plugins' directory
 
-2. Restart the `apsearch-middleware` service:
-
+``` shell
+wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras \
+    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/community/avcodec/avcodec.py
 ```
+
+2. Symlink the plugin to the 'enabled plugins' directory
+
+``` shell
+ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras/avcodec.py \
+    /opt/arcapix/usr/share/apsearch/plugins/enabled
+```
+
+3. Restart the `apsearch-middleware` service:
+
+``` shell
 systemctl restart apsearch-middleware
 ```
 
-3. (Re)ingest content as required - existing data will not be automatically rescanned
+4. (Re)ingest content as required - existing data will not be automatically rescanned
 
 
 ## Using This Plugin
@@ -36,7 +48,7 @@ The plugin will attempt to handle all video formats. It could be easily adapted 
 
 This plugin is licensed under the MIT License
 
-Copyright 2018 Pixit Media Limited
+Copyright 2019 Pixit Media Limited
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

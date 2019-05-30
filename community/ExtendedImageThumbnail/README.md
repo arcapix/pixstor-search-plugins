@@ -4,9 +4,9 @@
 
 **Author(s):** Chris Oates
 
-**Version:** 2.0
+**Version:** 3.0
 
-**Last Updated:** 2019/02/12
+**Last Updated:** 2019/05/21
 
 
 ## About This Plugin
@@ -25,15 +25,27 @@ Future iterations of the builtin `ImageThumbnail` plugin will support increased 
 
 ## Installing This Plugin
 
-1. Copy the plugin to your designated plugins/ directory. On a PixStor4 system, this defaults to `/opt/arcapix/usr/share/apsearch/plugins`
+1. Download the plugin to your 'available plugins' directory
 
-2. Restart the `apsearch-middleware` service:
-
+``` shell
+wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras \
+    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/community/ExtendedImageThumbnail/extendedimagethumbnail.py
 ```
+
+2. Symlink the plugin to the 'enabled plugins' directory
+
+``` shell
+ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras/extendedimagethumbnail.py \
+    /opt/arcapix/usr/share/apsearch/plugins/enabled
+```
+
+3. Restart the `apsearch-middleware` service:
+
+``` shell
 systemctl restart apsearch-middleware
 ```
 
-3. (Re)ingest content as required - existing data will not be automatically rescanned
+4. (Re)ingest content as required - existing data will not be automatically rescanned
 
 As this plugin extended a builtin plugin it has no additional requirements.
 
@@ -47,8 +59,9 @@ and returns `True` or `False` depending on whether the plugin should generate a 
 
 Consideration should be given to the type image format handled.  Images with multiple layers or mip-mapped formats (E.G. PSD, EXR, Pixar TEX) are likely to cause a large memory overhead or unexpected results.  The onus is on the plugin writer to handle such formats efficiently.  It is advised to ensure successful conversion and understanding of the resource requirements of such formats outside of PixStor Search prior to implmentation.
 
-Note: the plugin *should not* handle JPEG and DPX images as these are already handled by the builtin plugin.
-Handling JPEG and DPX will cause thumbnails and previews to be generated twice for those formats causing unwanted resource utilisation.  Database entries of prior processing results will be over-written with the data of the most recent processing event.
+Note: the plugin *should not* handle JPEG, DPX, PSD, PSB, or EXR images, as these are already handled by core plugins.
+Handling any of these file types will cause thumbnails and previews to be generated twice, causing unwanted resource utilisation.
+Database entries of prior processing results will be over-written with the data of the most recent processing event.
 
 The `super` call in the example will prevent the plugin from handling JPEG and DPX,
 plus any other formats the builtin plugin might support in the future.
@@ -60,7 +73,7 @@ No other changes should be necessary.
 
 This plugin is licensed under the MIT License
 
-Copyright 2018 Pixit Media Limited
+Copyright 2019 Pixit Media Limited
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

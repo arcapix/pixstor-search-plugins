@@ -9,7 +9,7 @@ from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import execute
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('arcapix.search.metadata.plugins.ext.text')
 
 matchme = string.ascii_letters + string.digits
 
@@ -31,24 +31,24 @@ class TextPlugin(Plugin):
     def schema(self):
         return [
             {
-            "name": "wordcount",
-            "prompt": "number of words in the document",
-            "value": {
-                "datatype": "Long"
+                "name": "wordcount",
+                "prompt": "number of words in the document",
+                "value": {
+                    "datatype": "Long"
                 }
             },
             {
-            "name": "language",
-            "prompt": "Primary language the text is written in",
-            "value": {
-                "datatype": "String"
+                "name": "language",
+                "prompt": "Primary language the text is written in",
+                "value": {
+                    "datatype": "String"
                 }
             },
             {
-            "name": "common_words",
-            "prompt": "Top 20 most commonly used words",
-            "value": {
-                "datatype": "[String]"
+                "name": "common_words",
+                "prompt": "Top 20 most commonly used words",
+                "value": {
+                    "datatype": "[String]"
                 }
             }
         ]
@@ -80,7 +80,7 @@ class TextPlugin(Plugin):
 
             return PluginStatus.ERRORED
 
-        except:
+        except Exception:
             logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
