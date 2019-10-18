@@ -53,9 +53,9 @@ def image_colourfulness(filename):
     Adapted from http://www.pyimagesearch.com/2017/06/05/computing-image-colorfulness-with-opencv-and-python/
     """
     # load image and resize
-    image = load_image(filename).convert('RGB')
-    image.thumbnail((250, 250))
-    ar = np.asarray(image, float)
+    image = load_image(filename)
+    image.shrink((250, 250))
+    ar = image.to_numpy()
 
     # split the image into its respective RGB components
     (R, G, B) = [ar[:, :, i] for i in range(3)]
