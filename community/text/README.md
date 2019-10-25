@@ -6,72 +6,24 @@
 
 **Version:** 1.0
 
-**Last Updated:** 2017/09/15
+**Last Updated:** 2019/10/17
+
+**Status:** Deleted
 
 ## About This Plugin
 
-The `TextPlugin` extracts various attributes of a text - word count, a list of 20 commonly used words, and the language of the text.
+The `TextPlugin` extracted various attributes of a text - word count, a list of 20 commonly used words, and the language of the text.
 
 Note - this plugin is very inefficient. It attempts to read a whole text into memory to perform its processing.
 For large files, it is likely to be very slow and memory inefficient.
 
 
-## Installing This Plugin
+## Deprecated and Removed
 
-1. Install dependencies
+This plugin is no longer compatible PixStor Search, and installing it will cause PixStor systems to fail to operate correctly. 
 
-At a minimum, you will need to install [langid](https://github.com/saffsd/langid.py)
+As such, it has been removed, and should be deleted from any system it has been installed on prior to updating to recent versions of PixStor Search.
 
-``` shell
-pip install langid
-```
-
-Additionally, to use the `HTMLTextPlugin`, you will need [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup)
-
-``` shell
-pip install bs4
-```
-
-for `PDFTextPlugin`, you will need textract
-
-``` shell
-pip install textract
-```
-
-for `MSDocTextPlugin`, you will need [antiword](http://www.winfield.demon.nl/).
-Instructions for installing `antiword` on Cento 7 (used by PixStor) can be found [here](https://centos.pkgs.org/7/forensics-x86_64/antiword-0.37-9.el7.x86_64.rpm.html)
-
-
-2. Download the plugin to your 'available plugins' directory
-
-``` shell
-wget -P /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras \
-    https://raw.githubusercontent.com/arcapix/pixstor-search-plugins/master/community/text/text.py
-```
-
-3. Symlink the plugin to the 'enabled plugins' directory
-
-``` shell
-ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-community-extras/text.py \
-    /opt/arcapix/usr/share/apsearch/plugins/enabled
-```
-
-4. Restart the `apsearch-middleware` service:
-
-``` shell
-systemctl restart apsearch-middleware
-```
-
-5. (Re)ingest content as required - existing data will not be automatically rescanned
-
-## Using This Plugin
-
-The TextPlugin handles only plaintext. But it can be subclassed to handle other text-based formats.
-The file includes three example subclasses - one which extracts text from MS Office Word documents,
- one which extracts text from html documents, and one which extracts text from PDF documents.
-
-To create your own subclass, you need only provide the `_get_text` method, which extracts text from a file and returns it as a string.
-Text extraction for various file formats can be found in the python [textract](http://textract.readthedocs.io/en/latest/) package.
 
 ## License
 
