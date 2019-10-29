@@ -1,5 +1,4 @@
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractImageThumbnailPlugin
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import PillowThumbnail as CoreImageThumbnail
+from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractImageThumbnailPlugin, CoreImageThumbnail
 
 
 """

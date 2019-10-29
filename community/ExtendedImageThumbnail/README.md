@@ -13,14 +13,14 @@
 
 This plugin generates thumbnail and preview images for additional image formats.
 
-The builtin `PillowThumbnail` plugin handles JPEG and DPX images.
+The builtin `CoreImageThumbnail` plugin handles JPEG and DPX images.
 
 This plugin extends the base `AbstractImageThumbnailPlugin` class to add support for additional formats.
 
 Optional supported formats are those provided by the `ImageMagick` Libraries.
 [ImageMagick supports](https://www.imagemagick.org/script/formats.php#supported)
 
-Future iterations of the builtin `PillowThumbnail` plugin will support increased formats and as such you should ensure that any extension of an additional format does not conflict in future releases.
+Future iterations of the builtin `CoreImageThumbnail` plugin will support increased formats and as such you should ensure that any extension of an additional format does not conflict in future releases.
 
 
 ## Installing This Plugin
@@ -63,7 +63,7 @@ Note: the plugin *should not* handle JPEG, DPX, PSD, PSB, or EXR images, as thes
 Handling any of these file types will cause thumbnails and previews to be generated twice, causing unwanted resource utilisation.
 Database entries of prior processing results will be over-written with the data of the most recent processing event.
 
-The call to `PillowThumbnail.handles` will prevent the plugin from handling JPEG and DPX,
+The call to `CoreImageThumbnail.handles` will prevent the plugin from handling JPEG and DPX,
 plus any other formats the builtin plugin might support in the future.
 
 The converter used to generate thumbnails is controlled by the apconfig setting `arcapix.search.proxies.image_converters`
