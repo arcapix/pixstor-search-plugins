@@ -27,10 +27,11 @@ class AllBlackImagePlugin(Plugin):
         }]
 
     def _extract(self, filename):
-        im = load_image(filename).convert('RGB')
+        im = load_image(filename)
+        ar = im.to_numpy().astype(int)
 
         # if the image is all black, all its values will be 0
-        return {'all_black': not sum(sum(sum(np.asarray(im, dtype=int))))}
+        return {'all_black': not sum(sum(sum(ar)))}
 
     def process(self, id_, file_, fileinfo=None):
         try:

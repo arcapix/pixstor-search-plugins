@@ -3,6 +3,7 @@ from imagehash import phash
 
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
+from arcapix.search.metadata.image import PillowImage
 from arcapix.search.metadata.utils import load_image
 
 logger = logging.getLogger('arcapix.search.metadata.plugins.ext.phash')
@@ -40,8 +41,12 @@ class ImageHashPlugin(Plugin):
 
     def process(self, id_, file_, fileinfo=None):
         try:
+            # phash requires a PIL.Image
+            # load_image may return a WandImage, so we need to convert
+            im = load_image(file_)
+            im = PillowImage(im).image
 
-            data = {'phash': str(phash(load_image(file_)))}
+            data = {'phash': str(phash(im))}
 
             if Metadata(id_, self).update(data):
                 return PluginStatus.SUCCESS

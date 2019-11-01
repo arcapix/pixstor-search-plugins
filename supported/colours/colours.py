@@ -83,9 +83,9 @@ def get_most_common_colours(filename):
     """
     NUM_CLUSTERS = 10
 
-    im = load_image(filename).convert('RGB')
-    im.thumbnail((150, 150))
-    ar = np.asarray(im, dtype=float)
+    im = load_image(filename)
+    im.shrink((150, 150))
+    ar = im.to_numpy()
 
     shape = ar.shape
     ar = ar.reshape(sp.product(shape[:2]), shape[2])
