@@ -1,14 +1,10 @@
-import logging
 import webcolors
-import numpy as np
 import scipy as sp
 import scipy.cluster as cluster
 
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import load_image
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.colours')
 
 
 class ColoursPlugin(Plugin):
@@ -46,7 +42,7 @@ class ColoursPlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 

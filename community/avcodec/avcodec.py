@@ -1,10 +1,6 @@
-import logging
-
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import get_ffprobe_data
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.avcodec')
 
 
 class VideoCodecPlugin(Plugin):
@@ -63,5 +59,5 @@ class VideoCodecPlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL

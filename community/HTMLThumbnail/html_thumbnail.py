@@ -1,9 +1,6 @@
-import logging
 import imgkit
 
 from arcapix.search.metadata.plugins.base import ThumbnailPlugin
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.html_thumbnail')
 
 
 class HtmlThumbnail(ThumbnailPlugin):

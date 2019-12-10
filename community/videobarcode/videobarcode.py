@@ -63,7 +63,7 @@ class VideoBarcodeProxy(ProxyPlugin):
             return PluginStatus.INPROGRESS
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 
@@ -120,7 +120,7 @@ def get_frames(source, size, max_frames=None, min_bar_width=1):
     try:
         s.gen_frames(frame_count)
     except OSError:  # sometimes the frame count goes out of index
-        logger.warn("Error from ffmpeg while generating frames")
+        logger.warning("Error from ffmpeg while generating frames")
 
     logger.info("Generated %d frames", len(s.frames))
 

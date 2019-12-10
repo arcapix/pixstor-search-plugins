@@ -15,11 +15,6 @@ class ExtendedVideoThumbnail(VideoThumbnail):
 
     def handles(self, ext=None, mimetype=None):
         """Override the base class handler for the video format"""
-
-        if VideoThumbnail().handles(ext, mimetype):
-            # don't handle formats already handled by builtin plugin
-            return False
-
         return ext in SUPPORTED_EXT or mimetype in SUPPORTED_MIME
 
 
@@ -30,9 +25,4 @@ class ExtendedVideoPreview(VideoPreview):
 
     def handles(self, ext=None, mimetype=None):
         """Override the base class handler for the video format"""
-
-        if VideoPreview().handles(ext, mimetype):
-            # don't handle formats already handled by builtin plugin
-            return False
-
         return ext in SUPPORTED_EXT or mimetype in SUPPORTED_MIME

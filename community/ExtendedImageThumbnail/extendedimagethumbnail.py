@@ -1,4 +1,4 @@
-from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractImageThumbnailPlugin, CoreImageThumbnail
+from arcapix.search.metadata.plugins.arcapix_core.imagepreview import AbstractImageThumbnailPlugin
 
 
 """
@@ -22,9 +22,4 @@ class ExtendedImageThumbnail(AbstractImageThumbnailPlugin):
 
     def handles(self, ext=None, mimetype=None):
         """Override the base class handler for the image format"""
-
-        if CoreImageThumbnail().handles(ext, mimetype):
-            # don't handle formats already handled by builtin plugin
-            return False
-
         return ext in SUPPORTED_EXT or mimetype in SUPPORTED_MIME

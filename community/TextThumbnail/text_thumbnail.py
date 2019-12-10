@@ -1,4 +1,3 @@
-import logging
 import os
 import re
 import textwrap
@@ -7,8 +6,6 @@ from itertools import ifilter
 from PIL import Image, ImageDraw, ImageFont
 
 from arcapix.search.metadata.plugins.base import ThumbnailPlugin
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.text_thumbnail')
 
 # path to the font files
 FONTS_PATH = os.path.abspath(__file__ + '/../fonts/')

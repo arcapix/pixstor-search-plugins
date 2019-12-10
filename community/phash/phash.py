@@ -1,12 +1,9 @@
-import logging
 from imagehash import phash
 
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.image import PillowImage
 from arcapix.search.metadata.utils import load_image
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.phash')
 
 
 class ImageHashPlugin(Plugin):
@@ -54,5 +51,5 @@ class ImageHashPlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL

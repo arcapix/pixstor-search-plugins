@@ -37,7 +37,7 @@ class Md5HashPlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 
@@ -49,7 +49,7 @@ def md5sum(filename, blocksize=65536):
             for block in iter(lambda: f.read(blocksize), b""):
                 hash.update(block)
     except Exception:
-        logger.warn("Couldn't md5 hash %r", filename)
+        logger.warning("Couldn't md5 hash %r", filename)
         # exclude any files that can't be read
         return None
     return hash.hexdigest()

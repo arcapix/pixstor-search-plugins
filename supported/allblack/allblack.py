@@ -1,11 +1,6 @@
-import logging
-import numpy as np
-
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import load_image
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.allblack')
 
 
 class AllBlackImagePlugin(Plugin):
@@ -43,5 +38,5 @@ class AllBlackImagePlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL

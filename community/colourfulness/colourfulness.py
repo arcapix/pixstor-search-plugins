@@ -1,12 +1,9 @@
-import logging
 from bisect import bisect
 import numpy as np
 
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
 from arcapix.search.metadata.utils import load_image
-
-logger = logging.getLogger('arcapix.search.metadata.plugins.ext.colourfulness')
 
 BOUNDS = [0, 15, 33, 45, 59, 82, 109]
 
@@ -43,7 +40,7 @@ class ColourfulnessPlugin(Plugin):
             return PluginStatus.ERRORED
 
         except Exception:
-            logger.exception("Error while processing %r (%s)", file_, id_)
+            self.logger.exception("Error while processing %r (%s)", file_, id_)
             return PluginStatus.FATAL
 
 
