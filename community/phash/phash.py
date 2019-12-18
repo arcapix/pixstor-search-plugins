@@ -41,15 +41,17 @@ class ImageHashPlugin(Plugin):
             # phash requires a PIL.Image
             # load_image may return a WandImage, so we need to convert
             im = load_image(file_)
-            im = PillowImage(im).image
 
-            data = {'phash': str(phash(im))}
+            data = {'phash': str(phash(im.image))}
 
             if Metadata(id_, self).update(data):
                 return PluginStatus.SUCCESS
 
             return PluginStatus.ERRORED
 
-        except Exception:
-            self.logger.exception("Error while processing %r (%s)", file_, id_)
+        except Exception as e:
+            self.logger.error(
+                "An exception was raised while processing '%s' (%s) with %s - %s: %s",
+                file_, id_, self.__class__.__name__, e.__class__.__name__, e)
+            self.logger.debug("Traceback while processing %r (%s)", file_, id_, exc_info=True)
             return PluginStatus.FATAL

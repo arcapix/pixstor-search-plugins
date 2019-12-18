@@ -37,6 +37,9 @@ class AllBlackImagePlugin(Plugin):
 
             return PluginStatus.ERRORED
 
-        except Exception:
-            self.logger.exception("Error while processing %r (%s)", file_, id_)
+        except Exception as e:
+            self.logger.error(
+                "An exception was raised while processing '%s' (%s) with %s - %s: %s",
+                file_, id_, self.__class__.__name__, e.__class__.__name__, e)
+            self.logger.debug("Traceback while processing %r (%s)", file_, id_, exc_info=True)
             return PluginStatus.FATAL
