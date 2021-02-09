@@ -22,6 +22,13 @@ The plugin takes a 5 second sample from the audio file and generates a spectrogr
 
 1. Install dependencies
 
+**IMPORTANT** - python packages must be installed in the PixStor Search virtual environment.
+To enter the virtual environment
+
+```shell
+source /usr/share/arcapix/apsearch/bin/activate
+```
+
 This plugin requires `ffmpeg`, which should have already been installed along with PixStor Search.
 
 You will also need [numpy](http://www.numpy.org/), [scipy](https://www.scipy.org/), and [matplotlib](https://matplotlib.org/index.html).
@@ -42,6 +49,12 @@ pip install matplotlib --upgrade
 
 **IMPORTANT** - you **must** install the yum packages **before** trying to install the pip packages.
 The yum packages will install dependencies, without which you are likely to see compilation errors from pip.
+
+Once the dependencies are installed, you can leave the virtual environment
+
+```shell
+deactivate
+```
 
 2. Download the plugin to your 'available plugins' directory
 

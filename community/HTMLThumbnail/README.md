@@ -20,6 +20,13 @@ It attempts to generate an image of the document as it would appear in a web bro
 
 1. Install dependencies
 
+**IMPORTANT** - python packages must be installed in the PixStor Search virtual environment.
+To enter the virtual environment
+
+```shell
+source /usr/share/arcapix/apsearch/bin/activate
+```
+
 This plugin uses the python [imgkit](https://github.com/jarrekk/imgkit) package to generate the images.
 
 In turn, `imgkit` requires [wkhtmltopdf](https://wkhtmltopdf.org/). For RedHat-based systems, there is no `yum` repo.
@@ -29,6 +36,12 @@ Once `wkhtmltopdf` is installed, you can install `imgkit` from `pip`
 
 ``` shell
 pip install imgkit
+```
+
+Once the dependencies are installed, you can leave the virtual environment
+
+```shell
+deactivate
 ```
 
 2. Download the plugin to your 'available plugins' directory

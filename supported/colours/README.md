@@ -21,7 +21,14 @@ Note - the plugin may return fewer than 10 colours if 10 unique colours can't be
 
 1. Install dependencies
 
-You will also need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.org/).
+**IMPORTANT** - python packages must be installed in the PixStor Search virtual environment.
+To enter the virtual environment
+
+```shell
+source /usr/share/arcapix/apsearch/bin/activate
+```
+
+To use this plugin will need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.org/).
 
 If you're using a RedHat-based operating system, these can be installed using `yum`
 
@@ -45,6 +52,12 @@ You will also need the python webcolors package
 pip install webcolors
 ```
 
+Once the dependencies are installed, you can leave the virtual environment
+
+```shell
+deactivate
+```
+
 2. Download the plugin to your 'available plugins' directory
 
 ``` shell
@@ -65,7 +78,7 @@ ln -s /opt/arcapix/usr/share/apsearch/plugins/available/arcapix-supported-extras
 systemctl restart apsearch-middleware
 ```
 
-4. (Re)ingest content as required - existing data will not be automatically rescanned
+5. (Re)ingest content as required - existing data will not be automatically rescanned
 
 ## Using This Plugin
 

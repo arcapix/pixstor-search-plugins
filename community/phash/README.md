@@ -21,6 +21,15 @@ It also has a certain tolerance for things like gamma levels, artefacts and nois
 
 1. Install dependencies
 
+**IMPORTANT** - python packages must be installed in the PixStor Search virtual environment.
+To enter the virtual environment
+
+```shell
+source /usr/share/arcapix/apsearch/bin/activate
+```
+
+Install the `ImageHash` library
+
 ``` shell
 pip install ImageHash
 ```
@@ -29,6 +38,12 @@ pip install ImageHash
 
 ``` shell
 pip install --upgrade scipy
+```
+
+Once the dependencies are installed, you can leave the virtual environment
+
+```shell
+deactivate
 ```
 
 2. Download the plugin to your 'available plugins' directory
