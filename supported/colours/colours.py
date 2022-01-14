@@ -60,7 +60,7 @@ def get_colour_name(requested_colour, spec='css3'):
     except ValueError:
         pass
 
-    colours = getattr(webcolors, '%s_hex_to_names' % spec).items()
+    colours = list(getattr(webcolors, '%s_hex_to_names' % spec).items())
     min_colours = {}
 
     for key, name in colours:

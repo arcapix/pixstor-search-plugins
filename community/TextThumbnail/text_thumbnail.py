@@ -2,7 +2,7 @@ import os
 import re
 import textwrap
 from bs4 import BeautifulSoup
-from itertools import ifilter
+
 from PIL import Image, ImageDraw, ImageFont
 
 from arcapix.search.metadata.plugins.base import ThumbnailPlugin
@@ -25,7 +25,7 @@ class TextThumbnail(ThumbnailPlugin):
         with open(source_path, 'r') as f:
             # Don't bother reading the whole thing
             # since it won't fit on the proxy anyway
-            text = str(f.read(8192))
+            text = f.read(8192)
 
         return text
 
@@ -100,6 +100,6 @@ class HtmlTextThumbnail(TextThumbnail):
                 return False
             return True
 
-        visible_text = re.sub(r'[\t\n\r]', ' ', " ".join(ifilter(visible, texts)))
+        visible_text = re.sub('[\\t\\n\\r]', ' ', " ".join(filter(visible, texts)))
 
         return visible_text

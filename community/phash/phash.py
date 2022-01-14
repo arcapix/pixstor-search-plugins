@@ -2,7 +2,6 @@ from imagehash import phash
 
 from arcapix.search.metadata.plugins.base import Plugin, PluginStatus
 from arcapix.search.metadata.helpers import Metadata
-from arcapix.search.metadata.image import PillowImage
 from arcapix.search.metadata.utils import load_image
 
 

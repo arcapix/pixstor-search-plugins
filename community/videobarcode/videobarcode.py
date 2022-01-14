@@ -29,7 +29,7 @@ class VideoBarcodeProxy(ProxyPlugin):
     def handles(self, ext=None, mimetype=None):
         return mimetype and mimetype.startswith('video/')
 
-    def async(self):
+    def is_async(self):
         return True
 
     def schema(self):
@@ -112,7 +112,7 @@ def get_frames(source, size, max_frames=None, min_bar_width=1):
 
     :returns: list of PIL Image objects
     """
-    s = StoryBoard(str(source))  # storyboard doesn't like unicode
+    s = StoryBoard(source.encode('utf8'))  # storyboard doesn't like unicode
 
     frame_count, bar_width = get_target_frame_count(
         s, size[0], max_frames, min_bar_width)
@@ -166,8 +166,8 @@ def generate_barcode_from_colors(colors, bar_size):
     barcode = np.zeros((height, len(colors) * width, 3), dtype="uint8")
 
     for i, color in enumerate(colors):
-        for x in xrange(i * width, (i + 1) * width):
-            for y in xrange(0, height):
+        for x in range(i * width, (i + 1) * width):
+            for y in range(0, height):
                 barcode[y][x] = color
 
     return Image.fromarray(barcode)
